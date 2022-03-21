@@ -1,0 +1,129 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/shared.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home_styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+    
+    <!-- Bootstrap with -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Asosiy sahifa</title>
+    <style>
+        ul {
+            list-style-type:none;
+            margin: 3px;
+            padding: 2px;
+            overflow: hidden;
+            background-color: #333;
+            }
+
+            li {
+                border: 5px red;
+                float: left;
+            }
+
+            li a {
+               
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            }
+
+            li a:hover:not(.active) {
+            background-color:greenyellow;
+            }
+
+            .active {
+            background-color: #04AA6D;
+            }
+            #auth {
+                float: right !important;
+            }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <ul>
+            <div style="display: inline; width: 200px;">
+
+                    <li {% if request.path == '/' %} class="active" {% endif %}><a href="{% url 'home' %}">Mavzu nomi</a></li>
+                    <li {% if request.path == '/all_lecture' %} class="active" {% endif %} ><a href="{% url 'all_lecture' %}">Maruza</a></li>
+                    <li {% if request.path == '/all_videos' %} class="active" {% endif %}><a href="{% url 'all_videos' %}">Video</a></li>
+                    <li ><a href="#about">Amaliyot</a></li>
+
+                    <li {% if request.path == '/addques' %} class="active" {% endif %}>
+                        <a class="" href="{% url 'quiz:addQuestion' %}">Add Question</a>
+                    </li>
+
+
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav">
+
+                  <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                  </li>
+                  </li>
+                  <li class="nav-item active">
+
+
+                  </li>
+
+
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                  </li>
+                </ul>
+            </div>
+
+            
+
+            <div class="form-inline ml-auto" style="display: inline; margin-left: 500px;">
+                <a href="{% url 'login' %}" class="btn btn-warning" style="padding: 10px;">Kirish</a>
+                <a href="{% url 'registration' %}" class="btn btn-primary ml-2" style="padding: 10px; margin-left: 1px;">Ro'yxatdan o'tish</a>
+                <a href="{% url 'logout' %}" class="btn btn-danger" style="padding: 10px;">Chiqish</a>
+            </div>
+        </ul>
+    </nav>
+        
+    
+    {% block content %}
+    {% endblock %}
+    <div id="home__statistics" class="home__statistics">
+                <div class="home__statistics-items">
+                    <div class="home__statistics-item">
+                        <div class="home__statistics-icon"><img style="width: 300px; height: 200px;" src="{% static 'img/talabalar.jpeg' %}" alt="Rasm"></div>
+                        <div class="home__statistics-counter">1654</div>
+                        <div class="home__statistics-info">Talabalar</div>
+                    </div>
+                    <div class="home__statistics-item">
+                        <div class="home__statistics-icon"><img style="width: 300px; height: 200px;" src="{% static 'img/magistrlar.jpeg' %}" alt="Rasm"></div>
+                        <div class="home__statistics-counter">725</div>
+                        <div class="home__statistics-info">Magistrlar</div>
+                    </div>
+                    <div class="home__statistics-item">
+                        <div class="home__statistics-icon"><img style="width: 300px; height: 200px;" class="rasm" src="{% static 'img/techers.jpg' %}" alt="Rasm"></div>
+                        <div class="home__statistics-counter">620</div>
+                        <div class="home__statistics-info">O'qituvchilar</div>
+                    </div>
+                </div>
+            </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   
+</body>

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body style="background: url(../static/images/orqafon.jpg) 50% 0 no-repeat fixed; background-size: cover;">
+    <h1 style="text-align: center; font-size: 80px;">Video Sahifasi</h1>
+
+    <div class="container-lg">
+            <div style="text-align: center;">
+                <h1>{{ videos.title }}</h1>
+                <video width="720" height="440" controls>
+                    <source src="{{ videos.video.url }}" type="video/mp4">
+                </video>
+            </div>
+
+              <div>
+            <a style="margin-left: 40%!important; margin: 20px; font-size: 30px; width: 300px;" href="" class="btn btn-warning">Keyingisi</a>
+        </div>
+
+    </div>
+
+</body>
+{% endblock %}
