@@ -1,19 +1,14 @@
-from distutils.command.upload import upload
-from distutils.text_file import TextFile
-from pyexpat import model
-from re import T
-from tokenize import group
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
-
-# Create your models here.
 
 class StudentUser(AbstractUser):
-    gruh = models.CharField('Gruh', max_length=8, null=True, blank=True)
-    kursi = models.CharField('Kursi', max_length=1, null=True, blank=True)
-    sharifi = models.CharField('Sharifi', max_length=30, null=True, blank=True)
+    group = models.CharField('group', max_length=8, null=True, blank=True)
+    degree = models.CharField('degree', max_length=1, null=True, blank=True)
+    surname = models.CharField('surname', max_length=30, null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -29,19 +24,28 @@ class Profile(models.Model):
         return str(self.age)
 
 
+class PhotoModel(models.Model):
+    lesson_number = models.CharField(max_length=20)
+    description_photo = models.ImageField()
+
+    def __str__(self):
+        return str(self.lesson_number)
+
+
 class Lesson(models.Model):
-    title = models.CharField('Mavzusi', max_length=200)
-    description = models.TextField()
+    number = models.CharField('Number', max_length=20)
+    title = models.CharField('Theme', max_length=200)
+    description = RichTextUploadingField()
+    description_photo = models.ManyToManyField(PhotoModel)
+    practice = RichTextField()
     photo = models.ImageField()
-    # test = models.ForeignKey(Quiz, related_name='test')
-
-    video = models.FileField('Video lavha', upload_to='videos/', null=True, blank=True)
-
+    order = models.IntegerField()
+    video = models.FileField('Video', upload_to='videos/', null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateField(auto_now=True)
 
     def __str__(self):
-        return self.title
+        return str(self.number)
 
 
 class Post(models.Model):

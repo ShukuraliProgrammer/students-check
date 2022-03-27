@@ -1,26 +1,16 @@
 import datetime
-
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import QuesModel
+from .models import QuesModel, ResultModel
 from .forms import AddQuestionForm
 from django.shortcuts import redirect
-
-# from django.template.loader import render_to_string
-# from weasyprint import HTML
-# import tempfile
-# from django.db.models import Sum
-# import datetime
+from topic.models import Lesson, StudentUser
 
 
-# Create your views here.
-
-def testView(request,pk):
+def testView(request, pk):
     if request.user.is_authenticated:
-
         if request.method == "POST":
             questions = QuesModel.objects.filter(topic=pk)
-            print(questions)
             score = 0
             wrong = 0
             correct = 0
@@ -32,9 +22,33 @@ def testView(request,pk):
                     correct += 1
                 else:
                     wrong += 1
+            if total != 0:
+                percent = score / (total * 10) * 100
+            else:
+                percent = 0
+                total = 0
+                score = 0
 
-            percent = score / (total * 10) * 100
+            if percent >= 60:
+                if pk != 15:
+                    lesson = Lesson.objects.get(id=pk + 1)
+                else:
+                    lesson = Lesson.objects.get(id=15)
+            else:
+                lesson = Lesson.objects.get(id=pk)
+            user1 = StudentUser.objects.get(id=request.user.id)
+            test_lesson = Lesson.objects.get(id=pk)
+            result1 = ResultModel.objects.filter(user=user1,lesson=test_lesson).first()
+            if result1:
+                result1.delete()
+            r = ResultModel.objects.create(
+                    user=user1,
+                    lesson=test_lesson,
+                    result=total,
+                    score=percent,
+               )
             context = {
+                'lesson': lesson,
                 'score': score,
                 'correct': correct,
                 'wrong': wrong,
@@ -65,7 +79,6 @@ def addQuestionView(request):
         return render(request, 'addQuestion.html', context=context)
     else:
         return redirect('test')
-
 
 # def export_pdf(request):
 #     response = HttpResponse(content_type='application/pdf')

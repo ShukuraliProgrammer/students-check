@@ -3,12 +3,13 @@ from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from .forms import UserRegistrationForm
 # Create your views here.
-from .models import Lesson, Post
+from .models import Lesson, Post, StudentUser
 from django.views.generic import DetailView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from quiz.models import QuesModel
+from quiz.models import QuesModel, ResultModel
+
 
 def registrationView(request):
     if request.user.is_authenticated:
@@ -19,9 +20,10 @@ def registrationView(request):
             form = UserRegistrationForm(request.POST)
             if form.is_valid():
                 user = form.save()
-                print(form)
+                messages.success(request, f"{user} muvaffaqqiyatli yaratildi.")
                 return redirect('login')
-
+            else:
+                messages.error(request, form.errors)
         context = {
             'form': form,
         }
@@ -36,12 +38,8 @@ def loginView(request):
             username = request.POST.get('username')
             password = request.POST.get('password')
             user = authenticate(request, username=username, password=password)
-            print(user)
-
             if user is not None:
                 login(request, user)
-                print(username)
-                print(password)
                 return redirect('/')
             else:
                 messages.info(request, "Sizning Username yoki Parolingiz xato")
@@ -54,7 +52,6 @@ def logoutView(request):
     return redirect('login')
 
 
-@login_required(login_url='login')
 def homeView(request):
     lessons = Lesson.objects.all()
     posts = Post.objects.all()
@@ -65,14 +62,14 @@ def homeView(request):
     return render(request, 'home.html', context=context)
 
 
-@login_required(login_url='login')
-def baseView(request, pk):
-    lesson = Lesson.objects.get(id=pk)
-
-    context = {
-        'lesson': lesson,
-    }
-    return render(request, 'base.html', context=context)
+# @login_required(login_url='login')
+# def baseView(request, pk):
+#     lesson = Lesson.objects.get(id=pk)
+#
+#     context = {
+#         'lesson': lesson,
+#     }
+#     return render(request, 'base.html', context=context)
 
 
 @login_required(login_url='login')
@@ -87,15 +84,45 @@ def videoView(request, pk):
 
 
 @login_required(login_url='login')
-def lesson_detailView(request, pk):
-    lesson = Lesson.objects.get(id=pk)
-    print(lesson)
-    context = {
-        'lesson': lesson,
+def lesson_detailView(request, lesson_order):
+    context = {}
+    if lesson_order == 1:
+        lesson = Lesson.objects.get(order=lesson_order)
+    else:
+        last_test_result = ResultModel.objects.filter(user=request.user, lesson__order=(lesson_order - 1)).first()
+        if last_test_result is None:
+            lesson1 = Lesson.objects.filter(resultmodel__score__gte=60).order_by('-order').first()
+            print("bu filter qilingan: ")
+            print(lesson1)
+            o_l = lesson1.order
 
-    }
-    print(lesson.description)
-    return render(request, 'maruza.html', context=context)
+            lesson = Lesson.objects.get(order=o_l+1)
+            print(o_l)
+            print("I must be MAN")
+
+        elif last_test_result.score > 60:
+            lesson = Lesson.objects.get(order=lesson_order)
+            print(lesson)
+        else:
+            lesson = Lesson.objects.get(order=(lesson_order - 1))
+        # context = {}
+        # if request.user.is_authenticated:
+        #     if pk > 1:
+        #         quiz = QuesModel.objects.get(id=pk - 1)
+        #     else:
+        #         quiz = QuesModel.objects.get(id=pk)
+        #     lesson = Lesson.objects.get(id=pk)
+        #     user = StudentUser.objects.get(id=request.user.id)
+        #     print(user)
+        #     lesson_r = lesson.id
+        #     print(lesson_r)
+        #     results = ResultModel.objects.filter(user_result=user.id, test_result=quiz.id).first()
+        #
+        #     percent1 = results.percent
+        #
+
+    context['lesson'] = lesson
+    return render(request, 'maruza1.html', context)
 
 
 @login_required(login_url='login')
@@ -116,3 +143,9 @@ def all_videos(request):
 
     }
     return render(request, 'all_videos.html', context=context)
+
+# def lecture(request):
+#     context = {
+#
+#     }
+#     return render(request, 'maruza1.html', context=context)

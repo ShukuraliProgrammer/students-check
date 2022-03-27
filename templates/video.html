@@ -6,15 +6,25 @@
     <h1 style="text-align: center; font-size: 80px;">Video Sahifasi</h1>
 
     <div class="container-lg">
-            <div style="text-align: center;">
-                <h1>{{ videos.title }}</h1>
-                <video width="720" height="440" controls>
-                    <source src="{{ videos.video.url }}" type="video/mp4">
-                </video>
-            </div>
+            <center>
+                <video id="my_video_1" class="video-js" controls preload="auto" class="w-100" height="450" poster="/data/modules/29bd6a64db3f58f71518ee56e6f1a1e5/topics/lecture/17_uzk/mp4/44.jpg" data-setup='{"autoplay": "true"}'>
+                    <source src="{{videos.video.url}}" type="video/mp4">
+                    <track label='Uzbek' kind='captions' srclang='uz' src='/data/modules/29bd6a64db3f58f71518ee56e6f1a1e5/topics/lecture/17_uzk/mp4/44.vtt' default />
+                    <p class="vjs-no-js">
+                      To view this video please enable JavaScript, and consider upgrading to a web browser that
+                      <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
 
+                </video>
+            </center>
+            <div class="border border-light p-2 m-2">
+                <p class="description">Сиз ушбу видео дарс умумий давомийлигини 100%га ўзлаштиргансиз</p>
+                <div class="progress md-progress mt-2">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </div>
               <div>
-            <a style="margin-left: 40%!important; margin: 20px; font-size: 30px; width: 300px;" href="" class="btn btn-warning">Keyingisi</a>
+            <a href = "{% url 'quiz:test' test.id %}" style="margin-left: 40%!important; margin: 20px; font-size: 30px; width: 300px;" href="" class="btn btn-warning">Keyingisi</a>
         </div>
 
     </div>

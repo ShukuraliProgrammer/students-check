@@ -3,7 +3,7 @@
 
 
 {% block content %}
-    <div class="container-fluid" style="background: url(../static/images/orqafon.jpg) 50% 0 no-repeat fixed; background-size: cover;">
+    <div class="container-fluid" style="padding-left:60px; background: url(../static/images/orqafon.jpg) 50% 0 no-repeat fixed; background-size: cover;">
         <section id="home__mian" class="home__main">
             <h1 class="myhome__news-subtitle">Biologiyada kompyuter texnologiyalari</h1>
                 <div style="display:flex; width: 100%; flex-wrap: wrap;">
@@ -14,7 +14,7 @@
                     </a>
                     <h2 class="myhome__new-title">
                         <a href="{% url 'lesson_lecture' i.pk %}" style="text-align: center;">
-                            {{ i.title }}
+                            {{ i.number }}
                         </a>
                     </h2>
                 </div><br>
