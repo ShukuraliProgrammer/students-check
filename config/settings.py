@@ -21,6 +21,7 @@ INSTALLED_APPS = [
 
     #local apps
     'topic',
+    'api',
     'quiz',
 ]
 
