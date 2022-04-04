@@ -1,0 +1,91 @@
+
+ {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login_style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Sign Up</title>
+</head>
+<body style="background: url(../static/img/backlogin.jpg) 50% 0 no-repeat fixed; background-size: cover;">
+    {% block content %}
+    <div class="container-fluid login-container">
+        <h1 class="login__subtitle">
+            
+        </h1>
+        <div class="login__info">
+            
+        </div>
+        <h3 class="login__title">
+            Ro'yhatdan o'tish
+        </h3>
+
+        <div class="login__cont">
+
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.last_name.1 }}"  class="login__cont-title">Familiyangiz:</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.last_name }} </div>
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.first_name.2 }}"  class="login__cont-title">Ismingiz:</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.first_name }} </div>
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.surname.1 }}"  class="login__cont-title">Sharifingiz:</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.surname }}</div>
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.degree.1 }}"  class="login__cont-title">Kursingiz:</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.degree }}</div>
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.group.1 }}"  class="login__cont-title">Gruhingiz:</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.group }}</div> 
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.email.1 }}"  class="login__cont-title">Emailingiz:</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.email }}</div>
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.username.1 }}"  class="login__cont-title">Usernameingiz:</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.username }} </div> 
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.password1.1 }}"  class="login__cont-title">Password1</label>
+                    <div style=" width:375px; border: 8px solid gray;"> {{ form.password1 }} </div>
+                </div><br><br>
+                <div class="fieldWrapper login">
+
+                    <label for="{{ form.password2.1 }}"  class="login__cont-title">Password2</label>
+                    <div style=" width:375px; border: 8px solid gray;">{{ form.password2 }} </div> 
+                </div><br><br><br><br>
+                <di>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <li>{{ message.message }}</li>
+                        {% endfor %}
+                    {% endif %}
+                </di>
+                <button class="login__btn" type="submit">Ro'yhatdan o'tish</button><br><br>
+                
+                <a class="btn btn-success"  style="border-radius: 25px;" href="{% url 'login' %}">Kirish uchun</a></p>
+            </form>
+        </div>
+    </div>
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>
