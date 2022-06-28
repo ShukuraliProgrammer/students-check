@@ -1,162 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
-
-
-    <!DOCTYPE html>
-    <html lang="uz">
-    <head>
-        <!--Meta block-->
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
-        <!-- SEO tags -->
-        <title>Maruza</title>
-        <meta name="csrf-param" content="_csrf">
-        <meta name="csrf-token"
-              content="_vGKWiRIFKnqlKIH2PK_7wPw5jlt0LQHprSfIf0jPOmVoeYrTxBx4qXk-GO7k-2LNpXUDF-G503Q7dxyzXd-hA==">
-        <meta property="og:description">
-
-
-    </head>
 {% block content %}
-    <body>
-
-    <div class="wrapper">
-
-        <div id="content_for_search">
-            <div id="content">
-
-
-
-                <div class="container">
-
-
-                    <section class="inner_content">
-                        <div class="inner_tab_panel">
-
-
-
-                            <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active" id="first">
-                                    <div class="status_box_first">
-                                        <div class="col-md-12">
-                                            <div class="pre_full_name">
-                                                {{ lesson.title }}
-                                            </div>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <hr>
-                                    <div class="status_box_second">
-                                        <div class="status_img">
-                                            <img class="news_in_img"
-                                                 src="/uploads/66a32e19-b8bb-31ec-bb1b-7b9ca371e3e0_pages_3184.jpg"
-                                                 alt="">
-                                        </div>
-                                        <p>&nbsp;</p>
-                                    <div style="font-size: 400px; text-align: center;height: auto; width: 100%;">
-                                        {% for img in lesson.description_photo.all %}
-                                        <img class="" src="{{ img.description_photo.url }}" alt="News">
-                                        {% endfor %}
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                        <div>
-            <a style="margin-left:300px; font-size: 30px; width: 600px; margin-bottom: 50px;" href="{% url 'lesson_video' lesson.id %}" class="btn btn-secondary">Amaliy mashg'ulotga o'tish</a>
+<section class="container-fluid pt-5 pb-5">
+    <div class="container">
+       
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  text-center">
+                <h2 class="font-weight-bold">{{ lesson.title }}</h2>
+                <h6 class="">{{ lesson.description }}</h6>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                {% for dp in lesson.description_photo.all %}
+                <img src="{{ dp.description_photo.url }}" class="text-justify">
+                    
+                </img>
+                {% endfor %}
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-inline justify-content-between pt-3 pb-3">
+                <button class="btn btn-outline-success"><i class="fa fa-angle-left"></i> Oldingi ma'ruzaga qaytish</button>
+                <a href="{% url 'lesson_lecture' lesson.id %}" class="btn btn-outline-success"> Keyingi ma'ruzaga o'tish <i class="fa fa-angle-right"></i></a>
+            </div>
         </div>
-                    </section>
-                    <div class="clearfix"></div>
-                    <div class="clearfix"></div>
+  
+    </div>
+</section>
 
-                    <!-- START WWW.UZ TOP-RATING -->
-                    <SCRIPT language="javascript" type="text/javascript">
-                        <!--
-                        top_js = "1.0";
-                        top_r = "id=40846&r=" + escape(document.referrer) + "&pg=" + escape(window.location.href);
-                        document.cookie = "smart_top=1; path=/";
-                        top_r += "&c=" + (document.cookie ? "Y" : "N")
-                        //-->
-                    </SCRIPT>
-                    <SCRIPT language="javascript1.1" type="text/javascript">
-                        <!--
-                        top_js = "1.1";
-                        top_r += "&j=" + (navigator.javaEnabled() ? "Y" : "N")
-                        //-->
-                    </SCRIPT>
-                    <SCRIPT language="javascript1.2" type="text/javascript">
-                        <!--
-                        top_js = "1.2";
-                        top_r += "&wh=" + screen.width + 'x' + screen.height + "&px=" +
-                            (((navigator.appName.substring(0, 3) == "Mic")) ? screen.colorDepth : screen.pixelDepth)
-                        //-->
-                    </SCRIPT>
-                    <SCRIPT language="javascript1.3" type="text/javascript">
-                        <!--
-                        top_js = "1.3";
-                        //-->
-                    </SCRIPT>
-                    <SCRIPT language="JavaScript" type="text/javascript">
-                        <!--
-                        top_rat = "&col=340F6E&t=ffffff&p=BD6F6F";
-                        top_r += "&js=" + top_js + "";
-                        document.write('<img src="https://cnt0.www.uz/counter/collect?' + top_r + top_rat + '" width=0 height=0 border=0 />')//-->
-                    </SCRIPT>
-                    <NOSCRIPT><IMG height=0
-                                   src="https://cnt0.www.uz/counter/collect?id=40846&pg=https%3A//uzinfocom.uz&col=340F6E&t=ffffff&p=BD6F6F"
-                                   width=0 border=0/></NOSCRIPT><!-- FINISH WWW.UZ TOP-RATING -->
-                </div>
-                <script src="/js/jquery.min.js"></script>
-                <script src="/assets/2ddc45/yii.js"></script>
-                <script src="/assets/524affe8/jquery-ui.js"></script>
-                <script src="/assets/c0024698/js/bootstrap.js"></script>
-                <script src="/js/jquery.cookie.js?v=2"></script>
-                <script src="/js/sharer.js?v=2"></script>
-                <script src="/js/main.js?v=3"></script>
-                <script src="/js/fancybox.min.js?v=2"></script>
-                <script src="/js/masonry.pkgd.js?v=2"></script>
-                <script src="/js/imagesLoaded.pkgd.js?v=2"></script>
-                <script src="/js/specialView.js?v=2"></script>
-                <script src="/js/orphus.js?v=2"></script>
-                <script src="/js/jquery.mCustomScrollbar.concat.min.js?v=2"></script>
-                <script src="/js/jquery.resizableColumns.js?v=2"></script>
-                <script src="/js/jQuery.print.js?v=2"></script>
-                <!--[if lt IE 9]>
-                <script src="/js/html5shiv.js?v=1"></script>
-                <![endif]-->
-                <!--[if lt IE 9]>
-                <script src="/js/jqueryFake.js?v=1"></script>
-                <![endif]-->
-                <!--[if lt IE 9]>
-                <script src="/js/respond.js?v=1"></script>
-                <![endif]-->
-                <script src="/assets/2ddc45/yii.validation.js"></script>
-                <script src="/assets/2ddc45/yii.activeForm.js"></script>
-                <script>jQuery(function ($) {
-                    jQuery('#w0').yiiActiveForm([{
-                        "id": "searchform-text",
-                        "name": "text",
-                        "container": ".field-searchform-text",
-                        "input": "#searchform-text",
-                        "validate": function (attribute, value, messages, deferred, $form) {
-                            yii.validation.required(value, messages, {"message": "«Калит сўз» ни тўлдириш шарт."});
-                            yii.validation.string(value, messages, {
-                                "message": "«Калит сўз» қиймати satr бўлиши керак.",
-                                "min": 3,
-                                "tooShort": "«Калит сўз» қиймати камида 3 белгидан ташкил топиши керак",
-                                "max": 255,
-                                "tooLong": "«Калит сўз» қиймати 255 белгидан ошмаслиги керак",
-                                "skipOnEmpty": 1
-                            });
-                        }
-                    }], []);
-                });</script>
 
-    </body>
+
+
+<section class="container-fluid">
+    <div class="container">
+        <div class="row">
+
+        </div>
+    </div>
+</section>
+
 {% endblock content %}
-    </html>
 
