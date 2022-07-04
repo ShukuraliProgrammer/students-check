@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-
+from .jazzmin_settings import JAZZMIN_SETTINGS
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--p$*--sh#_r5@(vt0+*^oohve5cp%+*zh4#=cj^)ifpn!uu!sm'
 
@@ -8,7 +8,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['10.10.1.89', '127.0.0.1','192.168.1.32','127.0.0.1', '.herokuapp.com']
 
 INSTALLED_APPS = [
-    
     'jazzmin',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
@@ -17,10 +16,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     # tashqi apps
     'ckeditor',
     'ckeditor_uploader',
-
+  
     #local apps
     'topic',
     'quiz',
@@ -120,3 +120,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # }
 #
 # CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js'
+

@@ -7,19 +7,17 @@
        
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  text-center">
-                <h2 class="font-weight-bold">{{ lesson.title }}</h2>
                 <h6 class="">{{ lesson.description }}</h6>
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 {% for dp in lesson.description_photo.all %}
                 <img src="{{ dp.description_photo.url }}" class="text-justify">
-                    
                 </img>
                 {% endfor %}
             </div>
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 form-inline justify-content-between pt-3 pb-3">
                 <button class="btn btn-outline-success"><i class="fa fa-angle-left"></i> Oldingi ma'ruzaga qaytish</button>
-                <a href="{% url 'lesson_lecture' lesson.id %}" class="btn btn-outline-success"> Keyingi ma'ruzaga o'tish <i class="fa fa-angle-right"></i></a>
+                <a href="{% url 'lesson_video' lesson.id %}" class="btn btn-outline-success"> Keyingi <i class="fa fa-angle-right"></i></a>
             </div>
         </div>
   

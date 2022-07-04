@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import StudentUser, Profile, Lesson, Post, PhotoModel
-
+from quiz.models import QuesModel
+from django.contrib.admin.options import InlineModelAdmin, TabularInline
+class QuesAdmin(TabularInline):
+    model = QuesModel
+    extra = 5
 
 @admin.register(StudentUser)
 class StudentAdmin(admin.ModelAdmin):
@@ -13,9 +17,10 @@ class StudentAdmin(admin.ModelAdmin):
 class StudentProfile(admin.ModelAdmin):
     list_display = ('user', 'age', 'photo', 'phone')
 
-
-admin.site.register(Lesson)
-
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ('number', 'title', 'created_date')
+    inlines = [QuesAdmin]
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):

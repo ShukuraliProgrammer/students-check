@@ -35,9 +35,9 @@ class PhotoModel(models.Model):
 class Lesson(models.Model):
     number = models.CharField('Number', max_length=20)
     title = models.CharField('Theme', max_length=200)
-    description = RichTextUploadingField()
+    description = RichTextUploadingField(null=True, blank=True)
     description_photo = models.ManyToManyField(PhotoModel)
-    practice = RichTextField()
+    practice = RichTextField(null=True, blank=True)
     photo = models.ImageField()
     order = models.IntegerField()
     video = models.FileField('Video', upload_to='videos/', null=True, blank=True)
