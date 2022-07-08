@@ -1,6 +1,6 @@
 from django.utils import timezone
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser,User
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
 
@@ -36,9 +36,9 @@ class Lesson(models.Model):
     number = models.CharField('Number', max_length=20)
     title = models.CharField('Theme', max_length=200)
     description = RichTextUploadingField(null=True, blank=True)
-    description_photo = models.ManyToManyField(PhotoModel)
+    description_photo = models.ManyToManyField(PhotoModel, related_name='photomodels',blank =True)
     practice = RichTextField(null=True, blank=True)
-    photo = models.ImageField()
+    photo = models.ImageField(blank=True)
     order = models.IntegerField()
     video = models.FileField('Video', upload_to='videos/', null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)

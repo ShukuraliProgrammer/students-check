@@ -2,6 +2,9 @@ from django.contrib import admin
 from .models import StudentUser, Profile, Lesson, Post, PhotoModel
 from quiz.models import QuesModel
 from django.contrib.admin.options import InlineModelAdmin, TabularInline
+
+
+
 class QuesAdmin(TabularInline):
     model = QuesModel
     extra = 5

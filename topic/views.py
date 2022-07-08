@@ -55,6 +55,7 @@ def logoutView(request):
 def homeView(request):
     lessons = Lesson.objects.all()
     posts = Post.objects.all()
+
     context = {
         'lessons': lessons,
         'posts': posts,
