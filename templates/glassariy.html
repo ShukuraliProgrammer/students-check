@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="container-fluid pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            {% for i in queryset %}
+           
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                
+                <img src="{{ i.description_photo.url }}" class="text-justify">
+                </img>
+        
+            </div>
+            {% endfor %}
+        </div>
+  
+    </div>
+</section>
+{% endblock content %}

@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from .forms import UserRegistrationForm
 # Create your views here.
-from .models import Lesson, Post, StudentUser
+from .models import Lesson, PhotoModel, Post, StudentUser
 from django.views.generic import DetailView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -153,3 +153,51 @@ def all_videos(request):
 #
 #     }
 #     return render(request, 'maruza1.html', context=context)
+
+def glassariyView(request):
+    queryset = PhotoModel.objects.filter(lesson_number = 30)
+    context = {
+        'queryset': queryset,
+    }
+    return render(request, 'glassariy.html', context=context)
+
+
+def adabiyotView(request):
+    queryset = PhotoModel.objects.filter(lesson_number = 50)
+    context = {
+        'queryset': queryset,
+    }
+    return render(request, 'adabiyotlar.html', context=context)
+
+
+def privatetaskView(request):
+    queryset = PhotoModel.objects.filter(lesson_number = 70)
+    context = {
+        'queryset': queryset,
+    }
+    return render(request, 'private_task.html', context=context)
+
+def newsdetailView(request,pk):
+    news = Post.objects.get(id=pk)
+    context = {
+        'news':news,
+    }
+    return render(request, 'news_detail.html', context=context)
+
+
+
+
+def nazoratView(request):
+    queryset = PhotoModel.objects.filter(lesson_number = request.GET.get('number', None))
+    context = {
+        'queryset': queryset,
+    }
+    return render(request, 'nazorat-detail.html', context=context)
+
+def newsView(request):
+    news = Post.objects.all()
+    context = {
+        'news':news,
+    }
+    return render(request, 'news.html', context=context)
+

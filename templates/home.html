@@ -112,8 +112,8 @@
 					<div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 p-3">
 						<div class="card text-right p-2">
 							<img src="{{ post.photo.url }}" width="100%" height="200" alt="">
-							<h5 class="font-weight-bold text-left pb-0 pt-2 pl-2">{{post.title }}</h5>
-							<a href="#!" class="border text-center">{{ post.body }}</a>
+							<h5 class="font-weight-bold text-left pb-0 pt-2 pl-2"><a href="{% url 'news-detail' post.id %}">{{post.title}}</a></h5>
+							<p  class="border text-center">{{ post.body|slice:50 }}</p>
 						</div>
 					</div>
                     {% endfor %}
@@ -155,44 +155,7 @@
 	</div>
 </section>
 
-<section class="container-fluid pt-5 pb-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-12 pb-2">
-				<h3 class="font-weight-bold text-center" style="color: #000000;">Foydali havolalar</h3>
-				<hr class="mb-4" style="height: 2px; background-color: #000; width: 25%; margin-right: auto;">		
-			</div>
-			<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 p-3">
-				<div class="p-3 text-center border">
-					<img src="img/default.png" width="80%" alt="">
-					<h5 class="text-danger pt-3"><i class="fa fa-play"></i> Video portal</h5>
-					<h2 class="font-weight-bold">TUBE.EDU.UZ</h2>
-					<h6>Олий ва ўрта махсус таълим вазирлиги видео портали</h6>
-					<button class="btn btn-danger mt-3 pl-5 pr-5" style="border-radius: 20px;">O'tish</button>
-				</div>
-			</div>
-			<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 p-3">
-				<div class="p-3 text-center border">
-					<img src="img/default.png" width="80%" alt="">
-					<h5 class="text-danger pt-3"><i class="fa fa-play"></i> Video portal</h5>
-					<h2 class="font-weight-bold">TUBE.EDU.UZ</h2>
-					<h6>Олий ва ўрта махсус таълим вазирлиги видео портали</h6>
-					<button class="btn btn-danger mt-3 pl-5 pr-5" style="border-radius: 20px;">O'tish</button>
-				</div>
-			</div>
-			<div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 p-3">
-				<div class="p-3 text-center border">
-					<img src="img/default.png" width="80%" alt="">
-					<h5 class="text-danger pt-3"><i class="fa fa-play"></i> Video portal</h5>
-					<h2 class="font-weight-bold">TUBE.EDU.UZ</h2>
-					<h6>Олий ва ўрта махсус таълим вазирлиги видео портали</h6>
-					<button class="btn btn-danger mt-3 pl-5 pr-5" style="border-radius: 20px;">O'tish</button>
-				</div>
-			</div>
-		
-		</div>
-	</div>
-</section>
+
 
 
 {% endblock %}

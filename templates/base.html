@@ -13,7 +13,18 @@
 	
 	  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	
+	<style>
+		.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+	</style>
 	</head>
 <body class="container-fluid pl-0 pr-0">
 	<header class="header shop">
@@ -22,15 +33,23 @@
 					<div class="row">
 						<div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8">
 								<nav class="navbar navbar-expand-lg pr-4 pr-lg-0 pr-xl-0">
-									<div class="navbar-collapse">	
+									<div class="navbar-collapse ">	
 										<div class="nav-inner">	
                                             <ul class="nav main-menu menu navbar-nav">
-                                                <li class="active"><a href="/">Asosiy</a></li>
-                                                <li><a href="{% url 'all_lecture' %}">Loiha haqida</a></li>					
-                                                <li><a href="report.html">Ma'ruzalar</a></li>
-                                                <li><a href="videomaker.html">Video</a></li>
-                                                <li><a href="practic.html">Amaliyot</a></li>
-                                                <li><a href="news.html">Yagiliklar</a></li>
+                                                <li {% if request.resolver_match.url_name == 'home' %}class="active"{% endif %}><a href="/">Asosiy</a></li>
+                                                <li class="dropdown"><a onclick="myFunction()" class="dropbtn" >Nazoratlar</a>
+													<div id="myDropdown" class="dropdown-content">
+														<a href="{% url 'nazorat' %}?number=100">Joriy Nazorat</a>
+														<a href="{% url 'nazorat' %}?number=101">Oraliq Nazorat</a>
+														<a href="{% url 'nazorat' %}?number=102">Yakuniy Nazorat</a>
+													</div>
+												</li>					
+                                                
+												<li {% if request.resolver_match.url_name == 'private-task' %}class="active"{% endif %} ><a href="{% url 'private-task' %}">Topshiriqlar</a></li>
+                                                <li {% if request.resolver_match.url_name == 'glassariy' %}class="active"{% endif %} ><a href="{% url 'glassariy' %}">Glossary</a></li>
+                                                
+                                                <li ><a href="{% url 'news' %}">Yagiliklar</a></li>
+												<li {% if request.resolver_match.url_name == 'adabiyot' %}class="active"{% endif %}><a href="{% url 'adabiyot' %}">Adabiyotlar</a></li>
                                             </ul>
 										</div>
 									</div>
@@ -111,5 +130,26 @@
 
 
 </script>
+<script>
+	/* When the user clicks on the button, 
+	toggle between hiding and showing the dropdown content */
+	function myFunction() {
+	  document.getElementById("myDropdown").classList.toggle("show");
+	}
+	
+	// Close the dropdown if the user clicks outside of it
+	window.onclick = function(event) {
+	  if (!event.target.matches('.dropbtn')) {
+		var dropdowns = document.getElementsByClassName("dropdown-content");
+		var i;
+		for (i = 0; i < dropdowns.length; i++) {
+		  var openDropdown = dropdowns[i];
+		  if (openDropdown.classList.contains('show')) {
+			openDropdown.classList.remove('show');
+		  }
+		}
+	  }
+	}
+	</script>
 </body>
 </html>
