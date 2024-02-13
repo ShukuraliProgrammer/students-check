@@ -4,3 +4,6 @@
 /.idea
 /templates
 /static
+__pycache__/
+__pypackages__/
+*.pyc
