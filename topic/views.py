@@ -122,6 +122,9 @@ def lesson_detailView(request, lesson_order):
         #
 
     context['lesson'] = lesson
+    context['lesson_id'] = lesson.id+1
+    print(lesson.title)
+    print(lesson.description_photo.all)
     return render(request, 'maruza1.html', context)
 
 
