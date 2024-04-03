@@ -3,3 +3,15 @@
 /bootstrap
 /.idea
 
+ __pycache__/
+ *.pyc
+
+**/__pycache__
+**/*.pyc
+**/__pycache__/
+
+config/__pycache__/
+quiz/__pycache__/
+quiz/migrations/__pycache__/
+topic/__pycache__/
+topic/migrations/__pycache__/
