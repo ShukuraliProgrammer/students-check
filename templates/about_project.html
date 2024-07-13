@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container about-section">
+        <div class="row">
+            <div class="col-12" style="margin-top: 50px;">
+                <h1 class="about-title">Loyiha haqida</h1>
+                <img src="{{ about_pro.image.url }}">
+                <p>{{ about_pro.text|safe }}</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
