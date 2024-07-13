@@ -11,9 +11,35 @@
 		<link rel="stylesheet" href="{% static 'fontawesomePremium/css/all.css' %}">
 		<link rel="stylesheet" href="{% static 'css/slick.css' %}">
 	
-	  <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-	
+	     <style>
+        .footer {
+            background-color: #007bff;
+            color: white;
+            padding: 40px 0;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #ffc107;
+        }
+
+        .footer .form-control,
+        .footer .btn-primary {
+            background-color: blue;
+            border: white;
+            color: white;
+        }
+
+        .footer .btn-primary:hover {
+            background-color: #ffc107;
+        }
+    </style>
 	</head>
 <body class="container-fluid pl-0 pr-0">
 	<header class="header shop">
@@ -29,7 +55,7 @@
                                                 <li><a href="/">Ma'ruzalar</a></li>
                                                 <li><a href="/">Amaliy</a></li>
                                                 <li><a href="{% url 'posts' %}">Yagiliklar</a></li>
-                                                <li><a href="{% url 'all_lecture' %}">Loiha haqida</a></li>			
+                                                <li><a href="{% url 'about_project' %}">Loiha haqida</a></li>
                                             </ul>
 										</div>
 									</div>
@@ -81,17 +107,8 @@
 
 
 
-<footer class="container-fluid" style="border-top: 2px solid #ddd;">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 pt-2 pb-2 text-center">
-                <small>© 2022 myweb.uz. Все права защищены.</small>
-            </div>
-        </div>
-    </div>
-</footer>
 
-
+   
 
 
 <button class="btn btn-top" title="Прокрутка вверх"><i class="fa fa-angle-up"></i></button>

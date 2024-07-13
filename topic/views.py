@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from .forms import UserRegistrationForm
 # Create your views here.
-from .models import Lesson, Post, StudentUser
+from .models import Lesson, Post, StudentUser, AboutProject, UsefulLink
 from django.views.generic import DetailView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -55,9 +55,15 @@ def logoutView(request):
 def homeView(request):
     lessons = Lesson.objects.all()
     posts = Post.objects.all()
+    about_project = AboutProject.objects.last()
+    students_count = StudentUser.objects.count()
+    useful_links = UsefulLink.objects.all()
     context = {
         'lessons': lessons,
         'posts': posts,
+        "about_project": about_project,
+        "students_count": students_count,
+        "useful_links": useful_links
     }
     return render(request, 'home.html', context=context)
 
@@ -91,18 +97,15 @@ def lesson_detailView(request, lesson_order):
     else:
         last_test_result = ResultModel.objects.filter(user=request.user, lesson__order=(lesson_order - 1)).first()
         if last_test_result is None:
-            lesson1 = Lesson.objects.filter(resultmodel__score__gte=60).order_by('-order').first()
-            print("bu filter qilingan: ")
-            print(lesson1)
-            o_l = lesson1.order
-
-            lesson = Lesson.objects.get(order=o_l+1)
-            print(o_l)
-            print("I must be MAN")
-
+            lesson1 = Lesson.objects.filter(resultmodel__score__gte=60, resultmodel__user=request.user).order_by(
+                '-order').first()
+            if lesson1:
+                o_l = lesson1.order
+                lesson = Lesson.objects.get(order=o_l + 1)
+            else:
+                lesson = Lesson.objects.get(order=1)
         elif last_test_result.score > 60:
             lesson = Lesson.objects.get(order=lesson_order)
-            print(lesson)
         else:
             lesson = Lesson.objects.get(order=(lesson_order - 1))
         # context = {}
@@ -144,13 +147,12 @@ def all_videos(request):
     }
     return render(request, 'all_videos.html', context=context)
 
+
 # def lecture(request):
 #     context = {
 #
 #     }
 #     return render(request, 'maruza1.html', context=context)
-
-
 
 
 class PostsListView(ListView):
@@ -173,6 +175,14 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(PostDetailView, self).get_context_data(**kwargs)
         latest_news = Post.objects.all().order_by("-created")[:5]
-        print(latest_news)
         context['latest_news'] = latest_news
         return context
+
+
+@login_required(login_url='login')
+def about_project(request):
+    about_pro = AboutProject.objects.last()
+    context = {
+        "about_pro": about_pro,
+    }
+    return render(request, "about_project.html", context=context)

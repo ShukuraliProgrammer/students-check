@@ -68,3 +68,24 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class AboutProject(models.Model):
+    image = models.ImageField(upload_to='media/images', null=True, blank=True)
+    text = RichTextUploadingField()
+
+    def __str__(self):
+        return self.text
+
+
+class UsefulLink(models.Model):
+    icon = models.ImageField(upload_to='media/images', null=True, blank=True)
+    title = models.CharField(max_length=250)
+    link = models.URLField(max_length=250, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Useful Link'
+        verbose_name_plural = 'Useful Links'
+
+    def __str__(self):
+        return self.title
