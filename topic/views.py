@@ -149,3 +149,30 @@ def all_videos(request):
 #
 #     }
 #     return render(request, 'maruza1.html', context=context)
+
+
+
+
+class PostsListView(ListView):
+    queryset = Post.objects.all()
+    template_name = 'news.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostsListView, self).get_context_data(**kwargs)
+        latest_news = Post.objects.all().order_by("-created")[:5]
+        context['latest_news'] = latest_news
+        return context
+
+
+class PostDetailView(DetailView):
+    queryset = Post.objects.all()
+    template_name = 'news_detail.html'
+    context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        latest_news = Post.objects.all().order_by("-created")[:5]
+        print(latest_news)
+        context['latest_news'] = latest_news
+        return context
