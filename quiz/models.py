@@ -18,6 +18,10 @@ class QuesModel(models.Model):
     def get_name(self):
         return self.topic.title
 
+    class Meta:
+        verbose_name = "Savol"
+        verbose_name_plural = "Savollar"
+
 
 def get_number(value):
     if value <= 15:
@@ -32,7 +36,9 @@ class ResultModel(models.Model):
     result = models.IntegerField(validators=[get_number])
     score = models.FloatField()
 
-
+    class Meta:
+        verbose_name = "Natija"
+        verbose_name_plural = "Natijalar"
 # from django.db import models
 # from topic.models import Lesson
 # from topic.models import StudentUser

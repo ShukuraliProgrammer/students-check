@@ -3,15 +3,15 @@
 {% block content %}
 {% load static %}
 <div class="container ">
-<h1>Welcome to DataFlair Quiz</h1>
+<h1>Quyida siz mavzu bo'yicha berilgan savollarga javob berishingiz kerak !</h1>
  
 <div align="right " id="displaytimer"><b>Timer: 0 seconds</b></div>
  
  <form method='post' action=''>
     {% csrf_token %}
-    {% for q  in questions%}
+    {% for q  in questions %}
     <div class="form-group">
-      <label for="question">{{q.question}}</label>
+      <label for="question">{{ forloop.counter }}. {{q.question}}</label>
     </div>
     <div class="form-check">
         <div class="form-check">

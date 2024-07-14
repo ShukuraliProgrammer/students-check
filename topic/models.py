@@ -13,6 +13,10 @@ class StudentUser(AbstractUser):
     def __str__(self):
         return self.username
 
+    class Meta:
+        verbose_name = "Foydalanuvchi"
+        verbose_name_plural = "Foydalanuvchilar"
+
 
 class Profile(models.Model):
     user = models.ForeignKey(StudentUser, on_delete=models.CASCADE, related_name='student_user', null=True)
@@ -23,6 +27,10 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.age)
 
+    class Meta:
+        verbose_name = "Shaxsiy kabinet"
+        verbose_name_plural = "Shaxsiy kabinetlar"
+
 
 class PhotoModel(models.Model):
     lesson_number = models.CharField(max_length=20)
@@ -30,6 +38,10 @@ class PhotoModel(models.Model):
 
     def __str__(self):
         return str(self.lesson_number)
+
+    class Meta:
+        verbose_name = "Dars rasmi"
+        verbose_name_plural = "Dars rasmlari"
 
 
 class Lesson(models.Model):
@@ -46,6 +58,10 @@ class Lesson(models.Model):
 
     def __str__(self):
         return str(self.number)
+
+    class Meta:
+        verbose_name = "Dars"
+        verbose_name_plural = "Darslar"
 
 
 class Post(models.Model):
@@ -69,6 +85,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Yangilik"
+        verbose_name_plural = "Yangiliklar"
+
 
 class AboutProject(models.Model):
     image = models.ImageField(upload_to='media/images', null=True, blank=True)
@@ -77,6 +97,9 @@ class AboutProject(models.Model):
     def __str__(self):
         return self.text
 
+    class Meta:
+        verbose_name = "Loyiha haqida"
+
 
 class UsefulLink(models.Model):
     icon = models.ImageField(upload_to='media/images', null=True, blank=True)
@@ -84,8 +107,8 @@ class UsefulLink(models.Model):
     link = models.URLField(max_length=250, null=True, blank=True)
 
     class Meta:
-        verbose_name = 'Useful Link'
-        verbose_name_plural = 'Useful Links'
+        verbose_name = 'Foydali link'
+        verbose_name_plural = 'Foydali linklar'
 
     def __str__(self):
         return self.title
