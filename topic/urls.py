@@ -16,4 +16,6 @@ urlpatterns = [
     path('posts/', views.PostsListView.as_view(), name='posts'),
     path("posts/<int:pk>/", views.PostDetailView.as_view(), name="post_detail"),
     path("about-project/", views.about_project, name="about_project"),
+    path("nazoratlar/", views.ControlWorksView.as_view(), name="control_works"),
+    path("glossary/", views.GlossaryListView.as_view(), name="glossary"),
 ]

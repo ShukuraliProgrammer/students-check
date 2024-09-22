@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container about-section">
+        <div class="row">
+            <div class="col-12" style="margin-top: 50px;">
+                <h1 class="about-title">Nazorat ishlari</h1>
+                {% for work in works %}
+                <img src="{{ work.image.url }}">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

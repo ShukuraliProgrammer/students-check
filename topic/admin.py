@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import StudentUser, Profile, Lesson, Post, PhotoModel, AboutProject, UsefulLink
+from .models import StudentUser, Profile, Lesson, Post, PhotoModel, AboutProject, UsefulLink, ControlWork, Glossary
 
 
 @admin.register(StudentUser)
@@ -41,3 +41,12 @@ class AboutProjectAdmin(admin.ModelAdmin):
 @admin.register(UsefulLink)
 class UsefulLinkAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(ControlWork)
+class ControlWorkAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Glossary)
+class GlossaryAdmin(admin.ModelAdmin):
+    pass
+

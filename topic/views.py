@@ -2,8 +2,9 @@ from email import message
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from .forms import UserRegistrationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
-from .models import Lesson, Post, StudentUser, AboutProject, UsefulLink
+from .models import Lesson, Post, StudentUser, AboutProject, UsefulLink, ControlWork, Glossary
 from django.views.generic import DetailView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -186,3 +187,26 @@ def about_project(request):
         "about_pro": about_pro,
     }
     return render(request, "about_project.html", context=context)
+
+
+class ControlWorksView(LoginRequiredMixin, ListView):
+    model = ControlWork
+    template_name = 'nazoratlar.html'
+    context_object_name = 'works'
+    ordering = ('title', )
+    def get_queryset(self):
+        query_param = self.request.GET.get('q')
+        if query_param == "JN":
+            return ControlWork.objects.filter(type=ControlWork.WorkType.JN).order_by('title')
+        elif query_param == 'ON':
+            return ControlWork.objects.filter(type=ControlWork.WorkType.ON).order_by('title')
+        elif query_param == 'YN':
+            return ControlWork.objects.filter(type=ControlWork.WorkType.YN).order_by('title')
+        return ControlWork.objects.all().order_by('title')
+
+
+class GlossaryListView(ListView):
+    model = Glossary
+    template_name = 'glossariy.html'
+    context_object_name = 'glossary'
+    ordering = ('title', )

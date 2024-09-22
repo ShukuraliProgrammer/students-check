@@ -53,8 +53,18 @@
                                             <ul class="nav main-menu menu navbar-nav">
                                                 <li class="active"><a href="/">Asosiy</a></li>
                                                 <li><a href="/">Ma'ruzalar</a></li>
-                                                <li><a href="/">Amaliy</a></li>
-                                                <li><a href="{% url 'posts' %}">Yagiliklar</a></li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="{% url 'control_works' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                      Nazoratlar
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <a class="dropdown-item" href="{% url 'control_works' %}?q=JN">Joriy Nazoratlar</a>
+                                                        <a class="dropdown-item" href="{% url 'control_works' %}?q=ON">Oraliq Nazoratlar</a>
+                                                        <a class="dropdown-item" href="{% url 'control_works' %}?q=YN">Yakuniy Nazoratlar</a>
+                                                    </div>
+                                                </li>
+                                                <li><a href="{% url 'glossary' %}">Glossary</a></li>
+                                                <li><a href="{% url 'posts' %}">Yangiliklar</a></li>
                                                 <li><a href="{% url 'about_project' %}">Loiha haqida</a></li>
                                             </ul>
 										</div>

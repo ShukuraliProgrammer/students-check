@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container about-section">
+        <div class="row">
+            <div class="col-12" style="margin-top: 50px;">
+                <h1 class="about-title">Glossariy</h1>
+                {% for gloss in glossary %}
+                <img src="{{ gloss.image.url }}">
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

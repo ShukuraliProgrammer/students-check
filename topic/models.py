@@ -112,3 +112,33 @@ class UsefulLink(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ControlWork(models.Model):
+    class WorkType(models.TextChoices):
+        JN = 'jn', 'Joriy Nazorat'
+        ON = 'on', 'Oraliq Nazorat'
+        YN = 'yn', 'Yakuniy Nazorat'
+
+    title = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='media/images', null=True, blank=True)
+    type = models.CharField(max_length=20, choices=WorkType.choices, default=WorkType.JN)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Nazorat ishi'
+        verbose_name_plural = 'Nazorat ishlari'
+
+
+class Glossary(models.Model):
+    title = models.CharField(max_length=250)
+    image = models.ImageField(upload_to='media/images', null=True, blank=True)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'Glossariy'
+        verbose_name_plural = 'Glossariy'
