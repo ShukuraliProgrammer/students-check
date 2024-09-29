@@ -5,7 +5,7 @@ from topic.models import StudentUser
 
 class QuesModel(models.Model):
     topic = models.ForeignKey(Lesson, on_delete=models.SET_NULL, related_name='topic', null=True)
-    question = models.CharField('Savol', max_length=200, null=True)
+    question = models.TextField('Savol', null=True)
     op1 = models.CharField('A javob', max_length=200, null=True)
     op2 = models.CharField('B javob', max_length=200, null=True)
     op3 = models.CharField('C javob', max_length=200, null=True)

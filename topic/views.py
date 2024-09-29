@@ -138,16 +138,6 @@ def all_lecture(request):
     return render(request, 'all_lecture.html', context=context)
 
 
-@login_required(login_url='login')
-def all_videos(request):
-    videos = Lesson.objects.all()
-
-    context = {
-        'videos': videos,
-
-    }
-    return render(request, 'all_videos.html', context=context)
-
 
 # def lecture(request):
 #     context = {
