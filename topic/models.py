@@ -142,3 +142,17 @@ class Glossary(models.Model):
     class Meta:
         verbose_name = 'Glossariy'
         verbose_name_plural = 'Glossariy'
+
+
+
+class ContactUs(models.Model):
+    name = models.CharField(max_length=250)
+    email = models.EmailField('Email', max_length=120)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Contact Us'
+        verbose_name_plural = 'Contact Us'

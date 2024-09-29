@@ -1,10 +1,10 @@
 from email import message
 from django.shortcuts import redirect, render
-from django.views.generic import ListView
-from .forms import UserRegistrationForm
+from django.views.generic import ListView,CreateView
+from .forms import UserRegistrationForm, ContactUsForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
-from .models import Lesson, Post, StudentUser, AboutProject, UsefulLink, ControlWork, Glossary
+from .models import Lesson, Post, StudentUser, AboutProject, UsefulLink, ControlWork, Glossary, ContactUs
 from django.views.generic import DetailView
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -54,6 +54,14 @@ def logoutView(request):
 
 
 def homeView(request):
+
+    if request.method == 'POST':
+        print(request.POST)
+        contact_form = ContactUsForm(request.POST)
+        contact_form.is_valid()
+        contact_form.save()
+        redirect('/')
+
     lessons = Lesson.objects.all()
     posts = Post.objects.all()
     about_project = AboutProject.objects.last()
@@ -200,3 +208,10 @@ class GlossaryListView(ListView):
     template_name = 'glossariy.html'
     context_object_name = 'glossary'
     ordering = ('title', )
+
+
+class ContactUsCreateView(CreateView):
+    model = ContactUs
+    template_name = 'base.html'
+    form_class = ContactUsForm
+    context_object_name = 'contact_us'

@@ -17,4 +17,5 @@ urlpatterns = [
     path("about-project/", views.about_project, name="about_project"),
     path("nazoratlar/", views.ControlWorksView.as_view(), name="control_works"),
     path("glossary/", views.GlossaryListView.as_view(), name="glossary"),
+    path("contact-us/", views.ContactUsCreateView.as_view(), name="contact_us"),
 ]
